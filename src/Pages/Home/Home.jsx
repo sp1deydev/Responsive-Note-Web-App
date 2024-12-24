@@ -4,6 +4,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import Pagination from '@mui/material/Pagination';
 import { default as React } from "react";
 
 function Home(props) {
@@ -660,6 +661,9 @@ function Home(props) {
             </div>
           </div>
         </Paper>
+      </div>
+      <div className="home-pagination">
+        <Pagination count={1} />
       </div>
     </div>
   );
