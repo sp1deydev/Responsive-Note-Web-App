@@ -57,6 +57,7 @@
   width: 100%;
 }
 .app-header-container {
+  margin: 0px 0px 12px 0px;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -68,4 +69,40 @@
 .app-header__group-btn {
   display: flex;
   gap: 12px
+}
+.home-list-cards {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.home-list__card-box {
+  width: 254px;
+  height: 220px;
+  border-radius: 12px !important; /* Set the desired border radius */
+  padding: 24px 24px 0px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.home-list-card-group-btn {
+  /* padding: 12px 0px 24px 0px; */
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.home-list-card-footer {
+  padding: 12px 0px 24px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* gap: 12px; */
+}
+.home-list_card-textbox {
+  display: -webkit-box;           /* Defines a flexible box layout */
+  -webkit-box-orient: vertical;   /* Aligns the items in the vertical direction */
+  -webkit-line-clamp: 6;          /* Limits the text to 3 lines */
+  overflow: hidden;               /* Hides the overflowed text */
+  text-overflow: ellipsis; 
+  font-weight: 600;
 }

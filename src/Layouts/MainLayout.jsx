@@ -60,7 +60,6 @@ function MainLayout(props) {
     </Drawer>
     <div className='main-content-container'>
         <AppHeader/>
-        <Typography variant="h4">Notes</Typography>
         {props.children}
 
     </div>
