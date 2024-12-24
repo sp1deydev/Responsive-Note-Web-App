@@ -1,10 +1,10 @@
 import AddIcon from '@mui/icons-material/Add';
+import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import { AppHeader } from '../Components/Header/Header';
-
 
 function MainLayout(props) {
     return (
@@ -43,6 +43,22 @@ function MainLayout(props) {
                     color="primary"
                     aria-label="add"
                     sx={{
+                    backgroundColor: "#000", // Primary color (or customize it)
+                    color: "#FFC145", // Icon color
+                    width: 40, // Adjust size for roundness
+                    height: 40,
+                    borderRadius: "50%", // Makes it circular
+                    "&:hover": {
+                        backgroundColor: "#4C585B", // Darker shade on hover
+                    },
+                    }}
+                >
+                    <StarOutlinedIcon />
+                </IconButton>
+                {/* <IconButton
+                    color="primary"
+                    aria-label="add"
+                    sx={{
                         backgroundColor: '#000', // Primary color (or customize it)
                         color: '#fff', // Icon color
                         width: 24, // Adjust size for roundness
@@ -53,8 +69,8 @@ function MainLayout(props) {
                         },
                     }}
                 >
-                    {/* <AddIcon /> */}
-                </IconButton>
+                    <AddIcon />
+                </IconButton> */}
             </div>
         </div>
     </Drawer>

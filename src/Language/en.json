@@ -1,4 +1,6 @@
 {
-    "welcome": "Welcome to Sp1dey",
-    "description": "This is English description"
+    "search": "Search",
+    "notes": "Notes",
+    "en": "English",
+    "vi": "Vietnamese"
 }

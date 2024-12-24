@@ -6,11 +6,13 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Pagination from '@mui/material/Pagination';
 import { default as React } from "react";
+import { useTranslation } from "react-i18next";
 
 function Home(props) {
+    const {t} = useTranslation()
   return (
     <div className="">
-      <Typography variant="h4">Notes</Typography>
+      <Typography variant="h4">{t('notes')}</Typography>
       <br></br>
       <div className="home-list-cards">
         <Paper className="home-list__card-box" elevation={2}>
