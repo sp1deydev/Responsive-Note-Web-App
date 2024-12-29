@@ -71,3 +71,11 @@
   float: right;
   padding: 24px;
 }
+/* Phone */
+@media screen and () {
+  
+}
+/* Tablet */
+@media screen and (max-width: 1024px) {
+  
+}
