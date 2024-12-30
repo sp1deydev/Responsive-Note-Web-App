@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Pagination from '@mui/material/Pagination';
 import { default as React } from "react";
 import { useTranslation } from "react-i18next";
+import MobileFloatingBtn from "../../Components/MobileFloatingBtn/MobileFloatingBtn";
 
 function Home(props) {
     const {t} = useTranslation()
@@ -667,6 +668,7 @@ function Home(props) {
       <div className="home-pagination">
         <Pagination count={1} />
       </div>
+      <MobileFloatingBtn/>
     </div>
   );
 }

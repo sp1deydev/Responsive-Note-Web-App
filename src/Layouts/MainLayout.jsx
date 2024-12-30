@@ -11,6 +11,7 @@ function MainLayout(props) {
     <div style={{display:' flex'}}>
     <Drawer
       variant="permanent"
+      className='side-bar-drawer'
       sx={{
         width: 120,
         flexShrink: 0,

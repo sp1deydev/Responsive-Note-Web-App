@@ -71,11 +71,30 @@
   float: right;
   padding: 24px;
 }
-/* Phone */
-@media screen and () {
-  
+.mobile-floating-btn {
+  display: none !important;
 }
-/* Tablet */
-@media screen and (max-width: 1024px) {
-  
+/* Mobile <740px*/
+@media screen and (max-width: 739px) {
+  .side-bar-drawer {
+    display: none;
+  }
+  .home-list__card-box {
+    width: 100%;
+  }
+  .mobile-floating-btn {
+    display: inline-flex !important;
+  }
+}
+/* Tablet 740px-1023px*/
+@media screen and (min-width: 740px) and (max-width: 1023px) {
+  .side-bar-drawer {
+    display: none;
+  }
+  .home-list__card-box {
+    width: 220px;
+  }
+  .mobile-floating-btn {
+    display: inline-flex !important;
+  }
 }
