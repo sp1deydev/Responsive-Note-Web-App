@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { Fab, Zoom, Box } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
+import { Box, Fab, Zoom } from '@mui/material';
+import React, { useState } from 'react';
 
 function MobileFloatingBtn() {
   const [open, setOpen] = useState(false);
