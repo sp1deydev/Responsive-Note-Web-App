@@ -85,6 +85,13 @@
   .mobile-floating-btn {
     display: inline-flex !important;
   }
+  .app-header__searchbox {
+    width: 200px;
+  }
+  .main-content-container {
+    padding: 12px 40px 0px;
+    width: 100%;
+  }
 }
 /* Tablet 740px-1023px*/
 @media screen and (min-width: 740px) and (max-width: 1023px) {
@@ -96,5 +103,13 @@
   }
   .mobile-floating-btn {
     display: inline-flex !important;
+  }
+  .main-content-container {
+    padding: 12px 40px 0px;
+    width: 100%;
+  }
+  .home-list__card-box {
+    width: 41%;
+    height: 220px;
   }
 }
