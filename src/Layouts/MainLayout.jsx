@@ -56,22 +56,6 @@ function MainLayout(props) {
                 >
                     <StarOutlinedIcon />
                 </IconButton>
-                {/* <IconButton
-                    color="primary"
-                    aria-label="add"
-                    sx={{
-                        backgroundColor: '#000', // Primary color (or customize it)
-                        color: '#fff', // Icon color
-                        width: 24, // Adjust size for roundness
-                        height: 24,
-                        borderRadius: '50%', // Makes it circular
-                        '&:hover': {
-                        //   backgroundColor: '#115293', // Darker shade on hover
-                        },
-                    }}
-                >
-                    <AddIcon />
-                </IconButton> */}
             </div>
         </div>
     </Drawer>
