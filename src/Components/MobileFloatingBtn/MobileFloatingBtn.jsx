@@ -1,5 +1,4 @@
 import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
 import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
 import { Box, Fab, Zoom } from '@mui/material';
 import React, { useState } from 'react';
@@ -40,7 +39,7 @@ function MobileFloatingBtn() {
             },
           }}
         >
-          <EditIcon />
+          <AddIcon />
         </Fab>
       </Zoom>
 
