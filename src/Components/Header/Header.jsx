@@ -43,7 +43,7 @@ export function AppHeader() {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           variant="outlined"
-          placeholder="Search..."
+          placeholder={t(`search`)}
           fullWidth
           sx={{
             maxWidth: "100%",
