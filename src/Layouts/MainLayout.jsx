@@ -4,7 +4,7 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import React from 'react';
-import { AppHeader } from '../Components/Header/Header';
+import { AppHeader } from './Header/Header';
 
 function MainLayout(props) {
     return (
