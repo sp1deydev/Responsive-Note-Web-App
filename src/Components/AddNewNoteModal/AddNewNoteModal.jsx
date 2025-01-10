@@ -5,23 +5,33 @@ import IconButton from "@mui/material/IconButton";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import React, { useState } from 'react';
+import SnackBarNotification from '../SnackBarNotification/SnackBarNotification';
 
 function AddNewNoteModal(props) {
     const { isModalOpen, onAddNew} = props;
     const [editedContent, setEditedContent] = useState("");
+    const [open, setOpen] = useState(false);
     
   const handleCancel = () => {
+    setEditedContent("")
+    onAddNew();
+  };
+  
+  const handleSave = () => {
+    setEditedContent("")
+    setOpen(true);
     onAddNew();
   };
 
-  const handleSave = () => {
-    onAddNew();
+  const handleCloseSnackBar = () => {
+    setOpen(false);
   };
 
   const handleChange = (e) => {
     setEditedContent(e.target.value);
   };
     return (
+      <div>
         <Modal
         open={isModalOpen}
         onClose={handleCancel}
@@ -102,6 +112,12 @@ function AddNewNoteModal(props) {
           </Box>
         </Box>
       </Modal>
+      <SnackBarNotification
+        open={open}
+        message="Add new successfully!"
+        onFinish={handleCloseSnackBar}
+      />
+      </div>
     );
 }
 

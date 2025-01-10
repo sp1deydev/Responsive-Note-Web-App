@@ -32,13 +32,14 @@
   gap: 12px
 }
 .home-list-cards {
+  width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: start;
   flex-wrap: wrap;
   gap: 20px;
 }
 .home-list__card-box {
-  width: 254px;
+  width: 234px;
   height: 220px;
   border-radius: 12px !important; /* Set the desired border radius */
   padding: 24px 24px 0px;

@@ -1,31 +1,36 @@
-import CheckIcon from '@mui/icons-material/Check';
-import CloseIcon from '@mui/icons-material/Close';
+import CheckIcon from "@mui/icons-material/Check";
+import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import SnackBarNotification from "../SnackBarNotification/SnackBarNotification";
 
 function EditNoteModal(props) {
-    const {note, isModalOpen, onFinishEdit} = props;
-    const [editedContent, setEditedContent] = useState(note.content);
-    
+  const { note, isModalOpen, onFinishEdit } = props;
+  const [editedContent, setEditedContent] = useState(note.content);
+  const [open, setOpen] = useState(false);
+
   const handleCancel = () => {
     onFinishEdit();
   };
 
   const handleSave = () => {
+    setOpen(true);
     onFinishEdit();
+  };
+
+  const handleCloseSnackBar = () => {
+    setOpen(false);
   };
 
   const handleChange = (e) => {
     setEditedContent(e.target.value);
   };
-    return (
-        <Modal
-        open={isModalOpen}
-        onClose={handleCancel}
-      >
+  return (
+    <div>
+      <Modal open={isModalOpen} onClose={handleCancel}>
         <Box
           sx={{
             position: "absolute",
@@ -102,7 +107,13 @@ function EditNoteModal(props) {
           </Box>
         </Box>
       </Modal>
-    );
+      <SnackBarNotification
+        open={open}
+        message="Save change successfully!"
+        onFinish={handleCloseSnackBar}
+      />
+    </div>
+  );
 }
 
 export default EditNoteModal;
