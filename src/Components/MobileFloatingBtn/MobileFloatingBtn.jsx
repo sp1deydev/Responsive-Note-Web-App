@@ -2,9 +2,19 @@ import AddIcon from '@mui/icons-material/Add';
 import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
 import { Box, Fab, Zoom } from '@mui/material';
 import React, { useState } from 'react';
+import AddNewNoteModal from '../AddNewNoteModal/AddNewNoteModal';
 
 function MobileFloatingBtn() {
   const [open, setOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleAddNewClick = () => {
+      setModalOpen(true);
+      setOpen(false);
+  };
+  const handleFinishAddNew = () => {
+      setModalOpen(false);
+  };
 
   const handleToggle = () => {
     setOpen((prev) => !prev);
@@ -38,6 +48,7 @@ function MobileFloatingBtn() {
               backgroundColor: "#4C585B",
             },
           }}
+          onClick={handleAddNewClick}
         >
           <AddIcon />
         </Fab>
@@ -78,6 +89,7 @@ function MobileFloatingBtn() {
       >
         <AddIcon />
       </Fab>
+      <AddNewNoteModal isModalOpen={isModalOpen} onAddNew={handleFinishAddNew} />
     </Box>
   );
 }
