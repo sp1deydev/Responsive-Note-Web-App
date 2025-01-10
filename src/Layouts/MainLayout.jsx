@@ -3,10 +3,19 @@ import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import React, { useState } from 'react';
 import { AppHeader } from './Header/Header';
+import AddNewNoteModal from '../Components/AddNewNoteModal/AddNewNoteModal';
 
 function MainLayout(props) {
+    const [isModalOpen, setModalOpen] = useState(false);
+
+    const handleAddNewClick = () => {
+        setModalOpen(true);
+    };
+    const handleFinishAddNew = () => {
+        setModalOpen(false);
+    };
     return (
     <div style={{display:' flex'}}>
     <Drawer
@@ -37,6 +46,7 @@ function MainLayout(props) {
                         color: '#000'
                         },
                     }}
+                    onClick={handleAddNewClick}
                 >
                     <AddIcon />
                 </IconButton>
@@ -64,7 +74,7 @@ function MainLayout(props) {
         {props.children}
 
     </div>
-
+    <AddNewNoteModal isModalOpen={isModalOpen} onAddNew={handleFinishAddNew} />
   </div>
     );
 }

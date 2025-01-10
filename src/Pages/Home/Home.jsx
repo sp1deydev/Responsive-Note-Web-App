@@ -15,7 +15,7 @@ function Home(props) {
       <br></br>
       <div className="home-list-cards">
         {notes.map((note, index) => {
-          return <NoteCard note={note} />
+          return <NoteCard key={index} note={note} />
         })}
       </div>
       <div className="home-pagination">
