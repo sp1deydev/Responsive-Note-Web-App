@@ -3,71 +3,81 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
 import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
-import React from 'react';
+import React, { useState } from "react";
+import EditNoteModal from "../EditNoteModal/EditNoteModal";
 
 function NoteCard(props) {
-    const {note} = props;
-    console.log(note);
-    return (
-        <Paper className="home-list__card-box" elevation={2}>
-          <div className="home-list_card-textbox">
-            {note.content}
+  const { note } = props; // onUpdateNote is a callback to update the note
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleEditClick = () => {
+    setModalOpen(true);
+  };
+  const handleFinishEdit = () => {
+    setModalOpen(false);
+  };
+
+  return (
+    <>
+      <Paper className="home-list__card-box" elevation={2}>
+        <div className="home-list_card-textbox">{note.content}</div>
+        <div className="home-list-card-footer">
+          <div className="home-list-card-footer-date">{note.date}</div>
+          <div className="home-list-card-group-btn">
+            <IconButton
+              color="primary"
+              sx={{
+                backgroundColor: "#000",
+                color: note.isMarked ? "#FFC145" : "#fff",
+                width: 32,
+                height: 32,
+                borderRadius: "50%",
+                "&:hover": {
+                  backgroundColor: "#4C585B",
+                },
+              }}
+            >
+              <StarOutlinedIcon />
+            </IconButton>
+            <IconButton
+              color="primary"
+              sx={{
+                backgroundColor: "#000",
+                color: "#fff",
+                width: 32,
+                height: 32,
+                borderRadius: "50%",
+                "&:hover": {
+                  backgroundColor: "#4C585B",
+                },
+              }}
+              onClick={handleEditClick}
+            >
+              <EditOutlinedIcon />
+            </IconButton>
+            <IconButton
+              color="primary"
+              sx={{
+                backgroundColor: "#000",
+                color: "#fff",
+                width: 32,
+                height: 32,
+                borderRadius: "50%",
+                "&:hover": {
+                  backgroundColor: "#4C585B",
+                },
+              }}
+            >
+              <DeleteOutlinedIcon />
+            </IconButton>
           </div>
-          <div className="home-list-card-footer">
-            <div className="home-list-card-footer-date">{note.date}</div>
-            <div className="home-list-card-group-btn">
-              <IconButton
-                color="primary"
-                aria-label="add"
-                sx={{
-                  backgroundColor: "#000", // Primary color (or customize it)
-                  color: note.isMarked ? "#FFC145" : "#fff", // Icon color
-                  width: 32, // Adjust size for roundness
-                  height: 32,
-                  borderRadius: "50%", // Makes it circular
-                  "&:hover": {
-                    backgroundColor: "#4C585B", // Darker shade on hover
-                  },
-                }}
-              >
-                <StarOutlinedIcon />
-              </IconButton>
-              <IconButton
-                color="primary"
-                aria-label="add"
-                sx={{
-                  backgroundColor: "#000", // Primary color (or customize it)
-                  color: "#fff", // Icon color
-                  width: 32, // Adjust size for roundness
-                  height: 32,
-                  borderRadius: "50%", // Makes it circular
-                  "&:hover": {
-                    backgroundColor: "#4C585B", // Darker shade on hover
-                  },
-                }}
-              >
-                <EditOutlinedIcon />
-              </IconButton>
-              <IconButton
-                color="primary"
-                aria-label="add"
-                sx={{
-                  backgroundColor: "#000", // Primary color (or customize it)
-                  color: "#fff", // Icon color
-                  width: 32, // Adjust size for roundness
-                  height: 32,
-                  borderRadius: "50%", // Makes it circular
-                  "&:hover": {
-                    backgroundColor: "#4C585B", // Darker shade on hover
-                  },
-                }}
-              >
-                <DeleteOutlinedIcon />
-              </IconButton>
-            </div>
-          </div>
-        </Paper>
-    );
+        </div>
+      </Paper>
+
+      {/* Edit Modal */}
+      <EditNoteModal isModalOpen={isModalOpen} note={note} onFinishEdit={handleFinishEdit}/>
+    </>
+  );
 }
 
 export default NoteCard;
