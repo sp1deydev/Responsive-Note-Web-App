@@ -4,7 +4,6 @@ import { default as React } from "react";
 
 function SnackBarNotification(props) {
     const {open, variant, message, time, vertical, horizontal, type, onFinish} = props;
-    console.log(open)
     const handleClose = () => {
         onFinish();
     };

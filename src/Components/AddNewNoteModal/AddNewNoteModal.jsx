@@ -6,11 +6,14 @@ import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import React, { useState } from 'react';
 import SnackBarNotification from '../SnackBarNotification/SnackBarNotification';
+import { useDispatch } from 'react-redux';
+import { noteSlice } from '../../Redux/noteSlice';
 
 function AddNewNoteModal(props) {
     const { isModalOpen, onAddNew} = props;
     const [editedContent, setEditedContent] = useState("");
     const [open, setOpen] = useState(false);
+    const dispatch = useDispatch();
     
   const handleCancel = () => {
     setEditedContent("")
@@ -18,6 +21,7 @@ function AddNewNoteModal(props) {
   };
   
   const handleSave = () => {
+    dispatch(noteSlice.actions.add(editedContent))
     setEditedContent("")
     setOpen(true);
     onAddNew();
