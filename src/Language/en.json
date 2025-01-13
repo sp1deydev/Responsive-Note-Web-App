@@ -2,5 +2,7 @@
     "search": "Search...",
     "notes": "Notes",
     "en": "English",
-    "vi": "Vietnamese"
+    "vi": "Vietnamese",
+    "editSuccess": "Save change successfully!",
+    "addSuccess": "Add new successfully!"
 }

@@ -10,7 +10,7 @@ function SnackBarNotification(props) {
   return (
     <Snackbar
       open={open}
-      autoHideDuration={time ?? 2000}
+      autoHideDuration={time ?? 1500}
       onClose={handleClose}
       anchorOrigin={{ vertical: vertical ?? "top", horizontal: horizontal ?? "right" }}
     >

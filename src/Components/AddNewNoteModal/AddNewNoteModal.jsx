@@ -8,8 +8,10 @@ import React, { useState } from 'react';
 import SnackBarNotification from '../SnackBarNotification/SnackBarNotification';
 import { useDispatch } from 'react-redux';
 import { noteSlice } from '../../Redux/noteSlice';
+import { useTranslation } from 'react-i18next';
 
 function AddNewNoteModal(props) {
+    const {t} = useTranslation();
     const { isModalOpen, onAddNew} = props;
     const [editedContent, setEditedContent] = useState("");
     const [open, setOpen] = useState(false);
@@ -41,6 +43,7 @@ function AddNewNoteModal(props) {
         onClose={handleCancel}
       >
         <Box
+          className="note-modal"
           sx={{
             position: "absolute",
             top: "50%",
@@ -118,7 +121,7 @@ function AddNewNoteModal(props) {
       </Modal>
       <SnackBarNotification
         open={open}
-        message="Add new successfully!"
+        message={t('addSuccess')}
         onFinish={handleCloseSnackBar}
       />
       </div>

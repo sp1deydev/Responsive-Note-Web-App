@@ -75,6 +75,9 @@
 .mobile-floating-btn {
   display: none !important;
 }
+.note-modal {
+  width: 500px;
+}
 /* Mobile <740px*/
 @media screen and (max-width: 739px) {
   .side-bar-drawer {
@@ -92,6 +95,9 @@
   .main-content-container {
     padding: 12px 40px 0px;
     width: 100%;
+  }
+  .note-modal {
+    width: 300px;
   }
 }
 /* Tablet 740px-1023px*/
@@ -112,5 +118,8 @@
   .home-list__card-box {
     width: 41%;
     height: 220px;
+  }
+  .note-modal {
+    width: 400px;
   }
 }

@@ -8,8 +8,10 @@ import React, { useState } from "react";
 import SnackBarNotification from "../SnackBarNotification/SnackBarNotification";
 import { useDispatch } from "react-redux";
 import { noteSlice } from "../../Redux/noteSlice";
+import { useTranslation } from "react-i18next";
 
 function EditNoteModal(props) {
+  const {t} = useTranslation();
   const { note, isModalOpen, onFinishEdit } = props;
   const [editedContent, setEditedContent] = useState(note.content);
   const [open, setOpen] = useState(false);
@@ -36,12 +38,12 @@ function EditNoteModal(props) {
     <div>
       <Modal open={isModalOpen} onClose={handleCancel}>
         <Box
+          className="note-modal"
           sx={{
             position: "absolute",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 400,
             bgcolor: "background.paper",
             boxShadow: 24,
             p: 3,
@@ -113,7 +115,7 @@ function EditNoteModal(props) {
       </Modal>
       <SnackBarNotification
         open={open}
-        message="Save change successfully!"
+        message={t('editSuccess')}
         onFinish={handleCloseSnackBar}
       />
     </div>
