@@ -5,7 +5,7 @@ export const noteSlice = createSlice({
     name: 'note',
     initialState: [
         {
-            id: '1',
+            id: 1,
             content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
             Consequuntur consectetur enim eius incidunt quo harum quam
             cupiditate cum, voluptatibus maxime doloremque. Modi, cupiditate
@@ -52,10 +52,12 @@ export const noteSlice = createSlice({
             state[index].content = content;
         },
         delete: (state, action) => {
-
+            const index = state.findIndex(note => note.id === action.payload)
+            state.splice(index, 1);
         },
         toggleMark: (state, action) => {
-
+            const index = state.findIndex(note => note.id === action.payload)
+            state[index].isMarked =  !state[index].isMarked;
         },
     },
 })

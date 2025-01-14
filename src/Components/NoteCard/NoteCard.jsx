@@ -5,10 +5,13 @@ import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
 import React, { useState } from "react";
 import EditNoteModal from "../EditNoteModal/EditNoteModal";
+import { useDispatch } from "react-redux";
+import { noteSlice } from "../../Redux/noteSlice";
 
 function NoteCard(props) {
   const { note } = props; // onUpdateNote is a callback to update the note
   const [isModalOpen, setModalOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleEditClick = () => {
     setModalOpen(true);
@@ -16,6 +19,12 @@ function NoteCard(props) {
   const handleFinishEdit = () => {
     setModalOpen(false);
   };
+  const handleToggleMark = () => {
+    dispatch(noteSlice.actions.toggleMark(note.id))
+  }
+  const handleDelete = () => {
+    dispatch(noteSlice.actions.delete(note.id))
+  }
 
   return (
     <>
@@ -36,6 +45,7 @@ function NoteCard(props) {
                   backgroundColor: "#4C585B",
                 },
               }}
+              onClick={handleToggleMark}
             >
               <StarOutlinedIcon />
             </IconButton>
@@ -67,6 +77,7 @@ function NoteCard(props) {
                   backgroundColor: "#4C585B",
                 },
               }}
+              onClick={handleDelete}
             >
               <DeleteOutlinedIcon />
             </IconButton>
