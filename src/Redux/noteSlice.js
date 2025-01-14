@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid';
+import { formatDisplayDate } from "../Common/formatDate";
 export const noteSlice = createSlice({
     name: 'note',
     initialState: [
@@ -36,11 +37,12 @@ export const noteSlice = createSlice({
     ],
     reducers: {
         add: (state, action) => {
+            const date = new Date();
             const newNote = {
                 id: uuidv4(),
                 content: action.payload,
-                date: 'May 13, 2024',
-                isMarked: true,
+                date: formatDisplayDate(date),
+                isMarked: false,
             }
             state.push(newNote);
         },

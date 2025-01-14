@@ -9,21 +9,29 @@ import SnackBarNotification from '../SnackBarNotification/SnackBarNotification';
 import { useDispatch } from 'react-redux';
 import { noteSlice } from '../../Redux/noteSlice';
 import { useTranslation } from 'react-i18next';
+import { checkNull } from '../../Common/checkNull';
 
 function AddNewNoteModal(props) {
     const {t} = useTranslation();
     const { isModalOpen, onAddNew} = props;
     const [editedContent, setEditedContent] = useState("");
+    const [borderColor, setBorderColor] = useState("gray");
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     
   const handleCancel = () => {
     setEditedContent("")
+    setBorderColor('gray')
     onAddNew();
   };
   
   const handleSave = () => {
+    if(!checkNull(editedContent)) {
+      setBorderColor('red')
+      return;
+    }
     dispatch(noteSlice.actions.add(editedContent))
+    setBorderColor('gray')
     setEditedContent("")
     setOpen(true);
     onAddNew();
@@ -61,6 +69,7 @@ function AddNewNoteModal(props) {
             Edit note
           </Typography> */}
           <TextField
+            placeholder={t('notePlaceholder')}
             fullWidth
             multiline
             rows={6}
@@ -70,10 +79,10 @@ function AddNewNoteModal(props) {
             sx={{
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: "gray", // Default border color
+                  borderColor: borderColor, // Default border color
                 },
                 "&:hover fieldset": {
-                  borderColor: "#000", // Border color on hover
+                  borderColor: borderColor, // Border color on hover
                 },
                 "&.Mui-focused fieldset": {
                   borderColor: "#000", // Border color on focus

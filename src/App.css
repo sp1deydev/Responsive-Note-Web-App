@@ -68,6 +68,9 @@
   text-overflow: ellipsis; 
   font-weight: 600;
 }
+.home-list-card-footer-date {
+  font-size: 14px;
+}
 .home-pagination {
   float: right;
   padding: 24px;
@@ -76,7 +79,7 @@
   display: none !important;
 }
 .note-modal {
-  width: 500px;
+  width: 500px !important;
 }
 /* Mobile <740px*/
 @media screen and (max-width: 739px) {
@@ -97,7 +100,10 @@
     width: 100%;
   }
   .note-modal {
-    width: 300px;
+    width: 340px !important;
+  }
+  .home-list-card-footer-date {
+    font-size: 16px;
   }
 }
 /* Tablet 740px-1023px*/
@@ -120,6 +126,9 @@
     height: 220px;
   }
   .note-modal {
-    width: 400px;
+    width: 400px !important;
+  }
+  .home-list-card-footer-date {
+    font-size: 16px;
   }
 }

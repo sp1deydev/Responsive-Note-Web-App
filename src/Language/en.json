@@ -4,5 +4,6 @@
     "en": "English",
     "vi": "Vietnamese",
     "editSuccess": "Save change successfully!",
-    "addSuccess": "Add new successfully!"
+    "addSuccess": "Add new successfully!",
+    "notePlaceholder": "Write something..."
 }
