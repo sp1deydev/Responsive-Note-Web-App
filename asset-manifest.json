@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Responsive-Note-Web-App/static/css/main.79f347d9.css",
-    "main.js": "/Responsive-Note-Web-App/static/js/main.2629776c.js",
+    "main.css": "/Responsive-Note-Web-App/static/css/main.5b3430e3.css",
+    "main.js": "/Responsive-Note-Web-App/static/js/main.85cad9b8.js",
     "static/js/488.b0bfef2c.chunk.js": "/Responsive-Note-Web-App/static/js/488.b0bfef2c.chunk.js",
     "index.html": "/Responsive-Note-Web-App/index.html",
-    "main.79f347d9.css.map": "/Responsive-Note-Web-App/static/css/main.79f347d9.css.map",
-    "main.2629776c.js.map": "/Responsive-Note-Web-App/static/js/main.2629776c.js.map",
+    "main.5b3430e3.css.map": "/Responsive-Note-Web-App/static/css/main.5b3430e3.css.map",
+    "main.85cad9b8.js.map": "/Responsive-Note-Web-App/static/js/main.85cad9b8.js.map",
     "488.b0bfef2c.chunk.js.map": "/Responsive-Note-Web-App/static/js/488.b0bfef2c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.79f347d9.css",
-    "static/js/main.2629776c.js"
+    "static/css/main.5b3430e3.css",
+    "static/js/main.85cad9b8.js"
   ]
 }
