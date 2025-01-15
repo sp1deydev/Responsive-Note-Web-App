@@ -12,7 +12,7 @@ function App() {
   const dispatch = useDispatch();
   useCurrentLanguage();
   useEffect(()=> {
-    const notes = handleLocalStorage.get('notes');
+    const notes = handleLocalStorage.get('notes') || [];
     dispatch(noteSlice.actions.loadData(notes))
   }, []);
   return (
