@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { noteSlice } from "../../Redux/noteSlice";
 
 function NoteCard(props) {
-  const { note } = props; // onUpdateNote is a callback to update the note
+  const { note, onEventSnackBar } = props; // onUpdateNote is a callback to update the note
   const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -21,10 +21,13 @@ function NoteCard(props) {
   };
   const handleToggleMark = () => {
     dispatch(noteSlice.actions.toggleMark(note.id))
+    onEventSnackBar("edit")
   }
   const handleDelete = () => {
     dispatch(noteSlice.actions.delete(note.id))
+    onEventSnackBar("delete")
   }
+
 
   return (
     <>
@@ -87,6 +90,7 @@ function NoteCard(props) {
 
       {/* Edit Modal */}
       <EditNoteModal isModalOpen={isModalOpen} note={note} onFinishEdit={handleFinishEdit}/>
+
     </>
   );
 }

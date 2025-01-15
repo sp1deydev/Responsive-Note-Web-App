@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid';
 import { formatDisplayDate } from "../Common/formatDate";
+import { handleLocalStorage } from "../Common/handleLocalStorage";
 export const noteSlice = createSlice({
     name: 'note',
     initialState: [
@@ -36,6 +37,9 @@ export const noteSlice = createSlice({
         },
     ],
     reducers: {
+        loadData: (state, action) => {
+            return [...action.payload ];
+        },
         add: (state, action) => {
             const date = new Date();
             const newNote = {
@@ -45,19 +49,23 @@ export const noteSlice = createSlice({
                 isMarked: false,
             }
             state.push(newNote);
+            handleLocalStorage.set('notes', state)
         },
         edit: (state, action) => {
             const {id, content} = action.payload;
             const index = state.findIndex(note => note.id === id)
             state[index].content = content;
+            handleLocalStorage.set('notes', state)
         },
         delete: (state, action) => {
             const index = state.findIndex(note => note.id === action.payload)
             state.splice(index, 1);
+            handleLocalStorage.set('notes', state)
         },
         toggleMark: (state, action) => {
             const index = state.findIndex(note => note.id === action.payload)
             state[index].isMarked =  !state[index].isMarked;
+            handleLocalStorage.set('notes', state)
         },
     },
 })

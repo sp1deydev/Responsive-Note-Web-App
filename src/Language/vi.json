@@ -5,5 +5,8 @@
     "vi": "Tiếng Việt",
     "editSuccess": "Lưu thay đổi thành công!",
     "addSuccess": "Thêm mới thành công!",
+    "deleteSuccess": "Xóa ghi chú thành công!",
+    "empty": "Không có dữ liệu",
+    "retry": "Thử lại",
     "notePlaceholder": "Viết gì đó..."
 }
