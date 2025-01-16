@@ -11,6 +11,7 @@ import SnackBarNotification from "../../Components/SnackBarNotification/SnackBar
 function Home(props) {
   const { t } = useTranslation();
   const notes = useSelector((state) => state.note.filterNotes);
+  const filterMarked = useSelector((state) => state.note.filterMarked);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [snackBarInfo, setSnackBarInfo] = useState({
@@ -36,6 +37,11 @@ function Home(props) {
       window.removeEventListener("resize", updateItemsPerPage);
     };
   }, []);
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [filterMarked]);
+  
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = notes.slice(startIndex, endIndex);

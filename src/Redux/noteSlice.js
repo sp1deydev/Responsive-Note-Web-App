@@ -7,6 +7,7 @@ export const noteSlice = createSlice({
     initialState: {
         allNotes: [],
         filterNotes: [],
+        filterMarked: false,
     },
     reducers: {
         loadData: (state, action) => {
@@ -15,8 +16,8 @@ export const noteSlice = createSlice({
         },
         loadFilterData: (state, action) => {
             const { search, marked } = action.payload;
+            state.filterMarked = !state.filterMarked;
             let filterData = JSON.parse(JSON.stringify(state.allNotes));
-            console.log(action.payload);
             if(marked) {
                 filterData = JSON.parse(JSON.stringify(state.allNotes)).filter((note) => note.isMarked === marked);
             }
