@@ -5,7 +5,10 @@ import { handleLocalStorage } from '../Common/handleLocalStorage';
 export  function useCurrentLanguage() {
     const { i18n } = useTranslation();
     useEffect(() => {
-        const currentLanguage = handleLocalStorage.get('language');
+        let currentLanguage = handleLocalStorage.get('language');
+        if(!currentLanguage) {
+            currentLanguage = 'en';
+        }
         if(currentLanguage) {
             i18n.changeLanguage(currentLanguage);
         }

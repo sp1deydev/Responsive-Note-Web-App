@@ -16,7 +16,10 @@ export function AppHeader() {
   const { t, i18n } = useTranslation();
   const [value, setValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
-  const currentLanguage = handleLocalStorage.get('language');
+  let currentLanguage = handleLocalStorage.get('language');
+  if(!currentLanguage) {
+    currentLanguage = 'en'
+  }
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
