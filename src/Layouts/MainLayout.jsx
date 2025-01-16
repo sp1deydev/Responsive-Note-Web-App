@@ -6,9 +6,13 @@ import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
 import { AppHeader } from './Header/Header';
 import AddNewNoteModal from '../Components/AddNewNoteModal/AddNewNoteModal';
+import { useDispatch } from 'react-redux';
+import { noteSlice } from '../Redux/noteSlice';
 
 function MainLayout(props) {
     const [isModalOpen, setModalOpen] = useState(false);
+    const [isMarked, setIsMarked] = useState(false)
+    const dispatch = useDispatch();
 
     const handleAddNewClick = () => {
         setModalOpen(true);
@@ -16,6 +20,10 @@ function MainLayout(props) {
     const handleFinishAddNew = () => {
         setModalOpen(false);
     };
+    const handleFilterNotes = () => {
+        dispatch(noteSlice.actions.loadFilterData({marked: !isMarked}))
+        setIsMarked(!isMarked);
+    }
     return (
     <div style={{display:' flex'}}>
     <Drawer
@@ -63,6 +71,7 @@ function MainLayout(props) {
                         backgroundColor: "#4C585B", // Darker shade on hover
                     },
                     }}
+                    onClick={handleFilterNotes}
                 >
                     <StarOutlinedIcon />
                 </IconButton>

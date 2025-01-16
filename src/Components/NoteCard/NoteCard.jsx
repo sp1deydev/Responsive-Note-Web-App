@@ -21,10 +21,12 @@ function NoteCard(props) {
   };
   const handleToggleMark = () => {
     dispatch(noteSlice.actions.toggleMark(note.id))
+    dispatch(noteSlice.actions.loadFilterData({}))
     onEventSnackBar("edit")
   }
   const handleDelete = () => {
     dispatch(noteSlice.actions.delete(note.id))
+    dispatch(noteSlice.actions.loadFilterData({}))
     onEventSnackBar("delete")
   }
 

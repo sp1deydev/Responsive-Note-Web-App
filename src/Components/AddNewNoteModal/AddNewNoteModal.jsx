@@ -31,6 +31,7 @@ function AddNewNoteModal(props) {
       return;
     }
     dispatch(noteSlice.actions.add(editedContent))
+    dispatch(noteSlice.actions.loadFilterData({}))
     setBorderColor('gray')
     setEditedContent("")
     setOpen(true);

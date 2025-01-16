@@ -31,6 +31,7 @@ function EditNoteModal(props) {
           return;
     }
     dispatch(noteSlice.actions.edit({id: note.id, content: editedContent}))
+     dispatch(noteSlice.actions.loadFilterData({}))
     setOpen(true);
     onFinishEdit();
   };

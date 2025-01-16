@@ -4,41 +4,27 @@ import { formatDisplayDate } from "../Common/formatDate";
 import { handleLocalStorage } from "../Common/handleLocalStorage";
 export const noteSlice = createSlice({
     name: 'note',
-    initialState: [
-        {
-            id: 1,
-            content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Consequuntur consectetur enim eius incidunt quo harum quam
-            cupiditate cum, voluptatibus maxime doloremque. Modi, cupiditate
-            dolorum? Rem aliquid quas eligendi mollitia cum, tempora,
-            perspiciatis, saepe at natus tenetur rerum minus suscipit. Libero
-            animi accusamus non eaque esse doloribus! Aliquam eligendi provident
-            odio velit, fuga eos vero amet in, est, eum obcaecati perspiciatis
-            non! Voluptates adipisci nesciunt recusandae ad repudiandae rem qui
-            sit, vitae quam dignissimos exercitationem placeat facilis facere
-            unde odio nemo aut dolorum tenetur quisquam aliquid iure possimus
-            enim expedita? Quidem, modi obcaecati suscipit, velit error porro
-            eligendi illo molestiae incidunt facere maiores numquam minima
-            doloribus ipsa ullam facilis magni! Nisi, doloremque, autem deserunt
-            atque, reiciendis delectus error incidunt nam sed dolores
-            consectetur. Autem vitae non accusamus, adipisci impedit ab iusto
-            qui sed velit! Ipsam sit exercitationem molestias deleniti repellat
-            incidunt enim in. Labore aperiam magnam velit consequatur atque at
-            dolores error quibusdam maiores? Fugiat, quos vel beatae repellendus
-            neque tempora. Unde quisquam ipsam ullam modi! Laudantium,
-            necessitatibus veritatis reprehenderit quisquam aperiam,
-            repudiandae, qui distinctio sequi eaque aliquid ipsam amet ipsa
-            sint! Fugit animi eum quas ea harum perspiciatis et odio iusto
-            dolorum. Adipisci quod impedit corrupti aspernatur magni inventore
-            esse!`,
-            date: 'May 13, 2024',
-            isEdit: false,
-            isMarked: true,
-        },
-    ],
+    initialState: {
+        allNotes: [],
+        filterNotes: [],
+    },
     reducers: {
         loadData: (state, action) => {
-            return [...action.payload ];
+            state.allNotes = action.payload;
+            state.filterNotes = [...state.allNotes]
+        },
+        loadFilterData: (state, action) => {
+            const { search, marked } = action.payload;
+            let filterData = JSON.parse(JSON.stringify(state.allNotes));
+            console.log(action.payload);
+            if(marked) {
+                filterData = JSON.parse(JSON.stringify(state.allNotes)).filter((note) => note.isMarked === marked);
+            }
+            console.log(filterData);
+            if (search) {
+                alert(search);
+            }
+            state.filterNotes = filterData;
         },
         add: (state, action) => {
             const date = new Date();
@@ -48,24 +34,24 @@ export const noteSlice = createSlice({
                 date: formatDisplayDate(date),
                 isMarked: false,
             }
-            state.push(newNote);
-            handleLocalStorage.set('notes', state)
+            state.allNotes.push(newNote);
+            handleLocalStorage.set('notes', state.allNotes)
         },
         edit: (state, action) => {
             const {id, content} = action.payload;
-            const index = state.findIndex(note => note.id === id)
-            state[index].content = content;
-            handleLocalStorage.set('notes', state)
+            const index = state.allNotes.findIndex(note => note.id === id)
+            state.allNotes[index].content = content;
+            handleLocalStorage.set('notes', state.allNotes)
         },
         delete: (state, action) => {
-            const index = state.findIndex(note => note.id === action.payload)
-            state.splice(index, 1);
-            handleLocalStorage.set('notes', state)
+            const index = state.allNotes.findIndex(note => note.id === action.payload)
+            state.allNotes.splice(index, 1);
+            handleLocalStorage.set('notes', state.allNotes)
         },
         toggleMark: (state, action) => {
-            const index = state.findIndex(note => note.id === action.payload)
-            state[index].isMarked =  !state[index].isMarked;
-            handleLocalStorage.set('notes', state)
+            const index = state.allNotes.findIndex(note => note.id === action.payload)
+            state.allNotes[index].isMarked =  !state.allNotes[index].isMarked;
+            handleLocalStorage.set('notes', state.allNotes)
         },
     },
 })

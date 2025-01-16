@@ -10,7 +10,7 @@ import SnackBarNotification from "../../Components/SnackBarNotification/SnackBar
 
 function Home(props) {
   const { t } = useTranslation();
-  const notes = useSelector((state) => state.note);
+  const notes = useSelector((state) => state.note.filterNotes);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [snackBarInfo, setSnackBarInfo] = useState({
@@ -23,16 +23,15 @@ function Home(props) {
         setItemsPerPage(5); // Small devices
       } else if (window.innerWidth < 1023) {
         setItemsPerPage(8); // Medium devices
-      } else if (window.innerWidth < 1023) {
-        setItemsPerPage(15); // Large devices
+      } else if (window.innerWidth < 1844) {
+        setItemsPerPage(12); // Large devices
       } else {
-        setItemsPerPage(12);
+        setItemsPerPage(15); // Large devices
       }
     };
 
     updateItemsPerPage(); // Set initial value
     window.addEventListener("resize", updateItemsPerPage);
-
     return () => {
       window.removeEventListener("resize", updateItemsPerPage);
     };
@@ -69,7 +68,7 @@ function Home(props) {
             {currentItems.map((note, index) => {
               return (
                 <NoteCard
-                  key={index}
+                  key={note.id}
                   note={note}
                   onEventSnackBar={handleSnackBar}
                 />

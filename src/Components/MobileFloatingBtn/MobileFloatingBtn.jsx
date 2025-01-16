@@ -3,10 +3,14 @@ import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
 import { Box, Fab, Zoom } from '@mui/material';
 import React, { useState } from 'react';
 import AddNewNoteModal from '../AddNewNoteModal/AddNewNoteModal';
+import { useDispatch } from 'react-redux';
+import { noteSlice } from '../../Redux/noteSlice';
 
 function MobileFloatingBtn() {
   const [open, setOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isMarked, setIsMarked] = useState(false)
+  const dispatch = useDispatch();
 
   const handleAddNewClick = () => {
       setModalOpen(true);
@@ -19,6 +23,10 @@ function MobileFloatingBtn() {
   const handleToggle = () => {
     setOpen((prev) => !prev);
   };
+  const handleFilterNotes = () => {
+      dispatch(noteSlice.actions.loadFilterData({marked: !isMarked}))
+      setIsMarked(!isMarked);
+  }
 
   return (
     <Box
@@ -70,6 +78,7 @@ function MobileFloatingBtn() {
               backgroundColor: "#4C585B",
             },
           }}
+          onClick={handleFilterNotes}
         >
           <StarOutlinedIcon />
         </Fab>
