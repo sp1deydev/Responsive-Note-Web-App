@@ -1,16 +1,22 @@
 import AddIcon from '@mui/icons-material/Add';
 import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
 import { Box, Fab, Zoom } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AddNewNoteModal from '../AddNewNoteModal/AddNewNoteModal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { noteSlice } from '../../Redux/noteSlice';
 
 function MobileFloatingBtn() {
   const [open, setOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [isMarked, setIsMarked] = useState(false)
+  const search = useSelector(state => state.note.filterInfo.search)
+  const allNotes = useSelector(state => state.note.allNotes)
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setIsMarked(false);
+  }, [allNotes])
 
   const handleAddNewClick = () => {
       setModalOpen(true);
@@ -24,7 +30,7 @@ function MobileFloatingBtn() {
     setOpen((prev) => !prev);
   };
   const handleFilterNotes = () => {
-      dispatch(noteSlice.actions.loadFilterData({marked: !isMarked}))
+      dispatch(noteSlice.actions.loadFilterData({marked: !isMarked, search: search}))
       setIsMarked(!isMarked);
   }
 

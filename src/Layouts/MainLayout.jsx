@@ -16,7 +16,7 @@ function MainLayout(props) {
     const allNotes = useSelector(state => state.note.allNotes)
     useEffect(() => {
         setIsMarked(false);
-      }, [allNotes])
+    }, [allNotes])
 
     const dispatch = useDispatch();
 
