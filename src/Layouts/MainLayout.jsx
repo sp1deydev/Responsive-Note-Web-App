@@ -3,15 +3,21 @@ import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AppHeader } from './Header/Header';
 import AddNewNoteModal from '../Components/AddNewNoteModal/AddNewNoteModal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { noteSlice } from '../Redux/noteSlice';
 
 function MainLayout(props) {
     const [isModalOpen, setModalOpen] = useState(false);
     const [isMarked, setIsMarked] = useState(false)
+    const search = useSelector(state => state.note.filterInfo.search)
+    const allNotes = useSelector(state => state.note.allNotes)
+    useEffect(() => {
+        setIsMarked(false);
+      }, [allNotes])
+
     const dispatch = useDispatch();
 
     const handleAddNewClick = () => {
@@ -21,7 +27,7 @@ function MainLayout(props) {
         setModalOpen(false);
     };
     const handleFilterNotes = () => {
-        dispatch(noteSlice.actions.loadFilterData({marked: !isMarked}))
+        dispatch(noteSlice.actions.loadFilterData({marked: !isMarked, search: search}))
         setIsMarked(!isMarked);
     }
     return (

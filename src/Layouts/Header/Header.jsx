@@ -7,44 +7,60 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LANGUAGE } from "../../Constants/Language";
 import {handleLocalStorage} from "../../Common/handleLocalStorage";
+import { useDispatch, useSelector } from "react-redux";
+import { noteSlice } from "../../Redux/noteSlice";
 
 export function AppHeader() {
   const { t, i18n } = useTranslation();
   const [value, setValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
+  const dispatch = useDispatch();
+  const allNotes = useSelector(state => state.note.allNotes)
+  const marked = useSelector((state) => state.note.filterInfo.marked);
+
+  useEffect(() => {
+    dispatch(noteSlice.actions.loadFilterData({marked: marked, search: value}))
+    // eslint-disable-next-line
+  }, [allNotes])
   let currentLanguage = handleLocalStorage.get('language');
   if(!currentLanguage) {
     currentLanguage = 'en'
   }
 
+  const handleSearch = (event) => {
+    setValue(event.target.value)
+    dispatch(noteSlice.actions.loadFilterData({marked: marked, search: event.target.value}))
+  }
+  const handleClear = () => {
+    setValue("");
+    dispatch(noteSlice.actions.loadFilterData({marked: marked, search: ""}))
+  };
+  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  
   const handleLanguageChange = (language) => {
     i18n.changeLanguage(language);
     handleLocalStorage.set("language", language)
     handleClose();
   };
-
-  const handleClear = () => {
-    setValue("");
-  };
+  
 
   return (
     <div className="app-header-container">
       <div className="app-header__searchbox">
         <TextField
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={handleSearch}
           variant="outlined"
           placeholder={t(`search`)}
           fullWidth

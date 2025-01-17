@@ -8,6 +8,11 @@ export const noteSlice = createSlice({
         allNotes: [],
         filterNotes: [],
         filterMarked: false,
+        filterInfo: {
+            search: "",
+            marked: false,
+        },
+        
     },
     reducers: {
         loadData: (state, action) => {
@@ -18,14 +23,17 @@ export const noteSlice = createSlice({
             const { search, marked } = action.payload;
             state.filterMarked = !state.filterMarked;
             let filterData = JSON.parse(JSON.stringify(state.allNotes));
-            if(marked) {
+            if (marked) {
                 filterData = JSON.parse(JSON.stringify(state.allNotes)).filter((note) => note.isMarked === marked);
             }
-            console.log(filterData);
             if (search) {
-                alert(search);
+                filterData = filterData.filter(item => {
+                    return item.content.toLowerCase().trim().includes(search.toLowerCase().trim())
+                });
             }
             state.filterNotes = filterData;
+            state.filterInfo.marked = marked;
+            state.filterInfo.search = search;
         },
         add: (state, action) => {
             const date = new Date();
