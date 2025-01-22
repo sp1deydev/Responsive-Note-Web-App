@@ -13,11 +13,16 @@ import { LANGUAGE } from "../../Constants/Language";
 import {handleLocalStorage} from "../../Common/handleLocalStorage";
 import { useDispatch, useSelector } from "react-redux";
 import { noteSlice } from "../../Redux/noteSlice";
+import { ListItemIcon, ListItemText } from "@mui/material";
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 
 export function AppHeader() {
   const { t, i18n } = useTranslation();
   const [value, setValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
+  const [fileAnchorEl, setFileAnchorEl] = useState(null);
   const dispatch = useDispatch();
   const allNotes = useSelector(state => state.note.allNotes)
   const marked = useSelector((state) => state.note.filterInfo.marked);
@@ -43,10 +48,15 @@ export function AppHeader() {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const handleClickFileMenu = (event) => {
+    setFileAnchorEl(event.currentTarget);
+  };
   
   const handleClose = () => {
     setAnchorEl(null);
+    setFileAnchorEl(null);
   };
+
   
   const handleLanguageChange = (language) => {
     i18n.changeLanguage(language);
@@ -104,9 +114,44 @@ export function AppHeader() {
               //   backgroundColor: '#115293', // Darker shade on hover
             },
           }}
+          onClick={handleClickFileMenu}
         >
           <FileDownloadOutlinedIcon />
         </IconButton>
+        <Menu
+            anchorEl={fileAnchorEl}
+            open={Boolean(fileAnchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem>
+              <ListItemIcon>
+                <SaveAltIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText>CSV Template</ListItemText>
+              {/* <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                ⌘X
+              </Typography> */}
+            </MenuItem>
+            <MenuItem>
+              <ListItemIcon>
+                <FileUploadIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText>Import CSV</ListItemText>
+              {/* <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                ⌘X
+              </Typography> */}
+            </MenuItem>
+            <MenuItem>
+              <ListItemIcon>
+                <FileDownloadIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText>Export CSV</ListItemText>
+              {/* <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                ⌘X
+              </Typography> */}
+            </MenuItem>
+          
+          </Menu>
         <div>
           <IconButton
             color="primary"
