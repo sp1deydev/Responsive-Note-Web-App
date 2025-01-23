@@ -8,5 +8,8 @@
     "deleteSuccess": "Xóa ghi chú thành công!",
     "empty": "Không có dữ liệu",
     "retry": "Thử lại",
-    "notePlaceholder": "Viết gì đó..."
+    "notePlaceholder": "Viết gì đó...",
+    "CSVTemplate": "Mẫu CSV",
+    "importCSV": "Tải lên CSV",
+    "exportCSV": "Xuất CSV"
 }

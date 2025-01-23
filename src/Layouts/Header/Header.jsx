@@ -127,30 +127,20 @@ export function AppHeader() {
               <ListItemIcon>
                 <SaveAltIcon fontSize="small" />
               </ListItemIcon>
-              <ListItemText>CSV Template</ListItemText>
-              {/* <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                ⌘X
-              </Typography> */}
+              <ListItemText>{t('CSVTemplate')}</ListItemText>
             </MenuItem>
             <MenuItem>
               <ListItemIcon>
                 <FileUploadIcon fontSize="small" />
               </ListItemIcon>
-              <ListItemText>Import CSV</ListItemText>
-              {/* <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                ⌘X
-              </Typography> */}
+              <ListItemText>{t('importCSV')}</ListItemText>
             </MenuItem>
             <MenuItem>
               <ListItemIcon>
                 <FileDownloadIcon fontSize="small" />
               </ListItemIcon>
-              <ListItemText>Export CSV</ListItemText>
-              {/* <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                ⌘X
-              </Typography> */}
+              <ListItemText>{t('exportCSV')}</ListItemText>
             </MenuItem>
-          
           </Menu>
         <div>
           <IconButton

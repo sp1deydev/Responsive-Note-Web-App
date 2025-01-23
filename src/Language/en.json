@@ -8,5 +8,8 @@
     "deleteSuccess": "Delete note successfully!",
     "empty": "No Data",
     "retry": "Retry",
-    "notePlaceholder": "Write something..."
+    "notePlaceholder": "Write something...",
+    "CSVTemplate": "CSV Template",
+    "importCSV": "Import CSV",
+    "exportCSV": "Export CSV"
 }
