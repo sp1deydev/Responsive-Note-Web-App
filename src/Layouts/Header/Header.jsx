@@ -17,6 +17,8 @@ import { ListItemIcon, ListItemText } from "@mui/material";
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
+import { CSVLink, CSVDownload } from "react-csv";
+import { TEMPLATE_HEADER_ARRAY, TEMPLATE_HEADER_OBJECT } from "../../Constants/TemplateFile";
 
 export function AppHeader() {
   const { t, i18n } = useTranslation();
@@ -63,6 +65,18 @@ export function AppHeader() {
     handleLocalStorage.set("language", language)
     handleClose();
   };
+  // const csvData = [
+  //   // ["firstname", "lastname", "email"],
+  //   ["Ahmed", "Tomi", "ah@smthing.co.com"],
+  //   ["Raed", "Labes", "rl@smthing.co.com"],
+  //   ["Yezzi", "Min l3b", "ymin@cocococo.com"]
+  // ]
+  const csvData = [
+      { firstname: "Ahmed", lastname: "Tomi", email: "ah@smthing.co.com" },
+      { firstname: "Raed", lastname: "Labes", email: "rl@smthing.co.com" },
+      { firstname: "Yezzi", lastname: "Min l3b", email: "ymin@cocococo.com" }
+    ];
+  
   
 
   return (
@@ -123,12 +137,14 @@ export function AppHeader() {
             open={Boolean(fileAnchorEl)}
             onClose={handleClose}
           >
+            <CSVLink data={TEMPLATE_HEADER_ARRAY} filename={"template.csv"} style={{textDecoration: 'none', color:'inherit'}}>
             <MenuItem>
               <ListItemIcon>
                 <SaveAltIcon fontSize="small" />
               </ListItemIcon>
               <ListItemText>{t('CSVTemplate')}</ListItemText>
             </MenuItem>
+              </CSVLink>
             <MenuItem>
               <ListItemIcon>
                 <FileUploadIcon fontSize="small" />

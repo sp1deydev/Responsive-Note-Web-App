@@ -16,7 +16,6 @@ function App() {
     dispatch(noteSlice.actions.loadData(notes))
     // eslint-disable-next-line
   }, []);
-  console.log('env', process.env)
   return (
     <div className="App">
       <BrowserRouter basename={process.env.PUBLIC_URL}>
