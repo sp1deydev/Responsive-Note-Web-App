@@ -137,7 +137,7 @@ export function AppHeader() {
             open={Boolean(fileAnchorEl)}
             onClose={handleClose}
           >
-            <CSVLink data={TEMPLATE_HEADER_ARRAY} filename={"template.csv"} style={{textDecoration: 'none', color:'inherit'}}>
+            <CSVLink data={[TEMPLATE_HEADER_ARRAY]} filename={"template.csv"} style={{textDecoration: 'none', color:'inherit'}}>
             <MenuItem>
               <ListItemIcon>
                 <SaveAltIcon fontSize="small" />
