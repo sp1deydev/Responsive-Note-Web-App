@@ -43,7 +43,8 @@ export function AppHeader() {
     let csvData = [];
     if(allNotes && allNotes.length > 0) {
       csvData.push(TEMPLATE_HEADER_ARRAY);
-      allNotes.map((note, index) => {
+      // eslint-disable-next-line
+      allNotes.map((note) => {
         let arr = [];
         arr[0] = note.id;
         arr[1] = note.content;
