@@ -17,14 +17,15 @@ import { ListItemIcon, ListItemText } from "@mui/material";
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
-import { CSVLink, CSVDownload } from "react-csv";
-import { TEMPLATE_HEADER_ARRAY, TEMPLATE_HEADER_OBJECT } from "../../Constants/TemplateFile";
+import { CSVLink } from "react-csv";
+import { TEMPLATE_HEADER_ARRAY } from "../../Constants/TemplateFile";
 
 export function AppHeader() {
   const { t, i18n } = useTranslation();
   const [value, setValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [fileAnchorEl, setFileAnchorEl] = useState(null);
+  const [exportData, setExportData] = useState([]);
   const dispatch = useDispatch();
   const allNotes = useSelector(state => state.note.allNotes)
   const marked = useSelector((state) => state.note.filterInfo.marked);
@@ -36,6 +37,23 @@ export function AppHeader() {
   let currentLanguage = handleLocalStorage.get('language');
   if(!currentLanguage) {
     currentLanguage = 'en'
+  }
+
+  const handleExportCSVFile = (event, done) => {
+    let csvData = [];
+    if(allNotes && allNotes.length > 0) {
+      csvData.push(TEMPLATE_HEADER_ARRAY);
+      allNotes.map((note, index) => {
+        let arr = [];
+        arr[0] = note.id;
+        arr[1] = note.content;
+        arr[2] = note.date;
+        arr[3] = note.isMarked;
+        csvData.push(arr);
+      })
+    }
+    setExportData(csvData); 
+    done();
   }
 
   const handleSearch = (event) => {
@@ -59,23 +77,11 @@ export function AppHeader() {
     setFileAnchorEl(null);
   };
 
-  
   const handleLanguageChange = (language) => {
     i18n.changeLanguage(language);
     handleLocalStorage.set("language", language)
     handleClose();
   };
-  // const csvData = [
-  //   // ["firstname", "lastname", "email"],
-  //   ["Ahmed", "Tomi", "ah@smthing.co.com"],
-  //   ["Raed", "Labes", "rl@smthing.co.com"],
-  //   ["Yezzi", "Min l3b", "ymin@cocococo.com"]
-  // ]
-  const csvData = [
-      { firstname: "Ahmed", lastname: "Tomi", email: "ah@smthing.co.com" },
-      { firstname: "Raed", lastname: "Labes", email: "rl@smthing.co.com" },
-      { firstname: "Yezzi", lastname: "Min l3b", email: "ymin@cocococo.com" }
-    ];
   
   
 
@@ -138,24 +144,32 @@ export function AppHeader() {
             onClose={handleClose}
           >
             <CSVLink data={[TEMPLATE_HEADER_ARRAY]} filename={"template.csv"} style={{textDecoration: 'none', color:'inherit'}}>
-            <MenuItem>
-              <ListItemIcon>
-                <SaveAltIcon fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>{t('CSVTemplate')}</ListItemText>
-            </MenuItem>
-              </CSVLink>
+              <MenuItem>
+                <ListItemIcon>
+                  <SaveAltIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>{t('CSVTemplate')}</ListItemText>
+              </MenuItem>
+            </CSVLink>
+            <CSVLink 
+              data={exportData} 
+              filename={"sp1dey-notes.csv"} 
+              style={{textDecoration: 'none', color:'inherit'}}
+              asyncOnClick={true}
+              onClick={handleExportCSVFile}
+            >
+              <MenuItem>
+                <ListItemIcon>
+                  <FileDownloadIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>{t('exportCSV')}</ListItemText>
+              </MenuItem>
+            </CSVLink>
             <MenuItem>
               <ListItemIcon>
                 <FileUploadIcon fontSize="small" />
               </ListItemIcon>
               <ListItemText>{t('importCSV')}</ListItemText>
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <FileDownloadIcon fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>{t('exportCSV')}</ListItemText>
             </MenuItem>
           </Menu>
         <div>
