@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid';
-import { formatDisplayDate } from "../Common/formatDate";
 import { handleLocalStorage } from "../Common/handleLocalStorage";
 export const noteSlice = createSlice({
     name: 'note',
@@ -40,7 +39,7 @@ export const noteSlice = createSlice({
             const newNote = {
                 id: uuidv4(),
                 content: action.payload,
-                date: formatDisplayDate(date),
+                date: date,
                 isMarked: false,
             }
             state.allNotes.push(newNote);

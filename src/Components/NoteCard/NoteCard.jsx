@@ -7,11 +7,14 @@ import React, { useState } from "react";
 import EditNoteModal from "../EditNoteModal/EditNoteModal";
 import { useDispatch } from "react-redux";
 import { noteSlice } from "../../Redux/noteSlice";
+import { formatDate } from "../../Common/formatDate";
+import { handleLocalStorage } from "../../Common/handleLocalStorage";
 
 function NoteCard(props) {
   const { note, onEventSnackBar } = props; // onUpdateNote is a callback to update the note
   const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
+  let currentLanguage = handleLocalStorage.get('language');
 
   const handleEditClick = () => {
     setModalOpen(true);
@@ -36,7 +39,7 @@ function NoteCard(props) {
       <Paper className="home-list__card-box" elevation={2}>
         <div className="home-list_card-textbox">{note.content}</div>
         <div className="home-list-card-footer">
-          <div className="home-list-card-footer-date">{note.date}</div>
+          <div className="home-list-card-footer-date">{currentLanguage && currentLanguage === 'vi' ? formatDate(note.date, 'dd/mm/yyyy') : formatDate(note.date, 'mm/dd/yyyy')}</div>
           <div className="home-list-card-group-btn">
             <IconButton
               color="primary"
