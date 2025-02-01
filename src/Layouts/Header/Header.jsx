@@ -1,6 +1,7 @@
 import ClearIcon from "@mui/icons-material/Clear";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
+import { styled } from '@mui/material/styles';
 import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -19,6 +20,18 @@ import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { CSVLink } from "react-csv";
 import { TEMPLATE_HEADER_ARRAY } from "../../Constants/TemplateFile";
+
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
 
 export function AppHeader() {
   const { t, i18n } = useTranslation();
@@ -167,10 +180,17 @@ export function AppHeader() {
               </MenuItem>
             </CSVLink>
             <MenuItem>
-              <ListItemIcon>
-                <FileUploadIcon fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>{t('importCSV')}</ListItemText>
+            <label style={{ display: "flex", alignItems: "center", cursor: "pointer", width: "100%" }}>
+                <ListItemIcon>
+                  <FileUploadIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>{t('importCSV')}</ListItemText>
+                <VisuallyHiddenInput
+                  type="file"
+                  onChange={(event) => console.log(event.target.files)}
+                  // multiple
+                />
+              </label>
             </MenuItem>
           </Menu>
         <div>
