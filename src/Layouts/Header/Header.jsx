@@ -111,7 +111,7 @@ export function AppHeader() {
     Papa.parse(file, {
       header: true,
       complete: function(results) {
-        if(results.data.length == 0) {
+        if(results.data.length === 0) {
           setType("error");
           setMessage(t('importBlankMsg'))
           setOpen(true);
