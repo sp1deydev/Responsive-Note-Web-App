@@ -20,6 +20,8 @@ import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { CSVLink } from "react-csv";
 import { TEMPLATE_HEADER_ARRAY } from "../../Constants/TemplateFile";
+import Papa from 'papaparse';
+import SnackBarNotification from "../../Components/SnackBarNotification/SnackBarNotification";
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -39,6 +41,9 @@ export function AppHeader() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [fileAnchorEl, setFileAnchorEl] = useState(null);
   const [exportData, setExportData] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [type, setType] = useState();
+  const [message, setMessage] = useState();
   const dispatch = useDispatch();
   const allNotes = useSelector(state => state.note.allNotes)
   const marked = useSelector((state) => state.note.filterInfo.marked);
@@ -70,6 +75,10 @@ export function AppHeader() {
     done();
   }
 
+  const handleCloseSnackBar = () => {
+    setOpen(false);
+  };
+
   const handleSearch = (event) => {
     setValue(event.target.value)
     dispatch(noteSlice.actions.loadFilterData({marked: marked, search: event.target.value}))
@@ -97,7 +106,24 @@ export function AppHeader() {
     handleClose();
   };
   
-  
+  const handleUploadCSVFile = (event) => {
+    let file = event.target.files[0];
+    Papa.parse(file, {
+      header: true,
+      complete: function(results) {
+        if(results.data.length == 0) {
+          setType("error");
+          setMessage(t('importBlankMsg'))
+          setOpen(true);
+          return;
+        }
+        dispatch(noteSlice.actions.import(results.data));
+        setType("success");
+        setMessage(t('importSuccessMsg'))
+        setOpen(true);
+      }
+    });
+  }
 
   return (
     <div className="app-header-container">
@@ -187,7 +213,8 @@ export function AppHeader() {
                 <ListItemText>{t('importCSV')}</ListItemText>
                 <VisuallyHiddenInput
                   type="file"
-                  onChange={(event) => console.log(event.target.files)}
+                  // onChange={(event) => console.log(event.target.files)}
+                  onChange={handleUploadCSVFile}
                   // multiple
                 />
               </label>
@@ -231,6 +258,12 @@ export function AppHeader() {
           </Menu>
         </div>
       </div>
+      <SnackBarNotification
+        open={open}
+        type={type}
+        message={message}
+        onFinish={handleCloseSnackBar}
+      />
     </div>
   );
 }

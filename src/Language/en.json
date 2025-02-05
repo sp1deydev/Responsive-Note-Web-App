@@ -11,5 +11,8 @@
     "notePlaceholder": "Write something...",
     "CSVTemplate": "CSV Template",
     "importCSV": "Import CSV",
-    "exportCSV": "Export CSV"
+    "exportCSV": "Export CSV",
+    "exportFailMsg": "",
+    "importBlankMsg": "Uploaded file is blank!",
+    "importSuccessMsg": "Upload file successfully!"
 }

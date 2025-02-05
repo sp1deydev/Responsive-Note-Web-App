@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^2.5.0",
     "cra-template": "1.2.0",
     "dotenv": "^16.4.7",
+    "papaparse": "^5.5.2",
     "react": "^19.0.0",
     "react-csv": "^2.2.2",
     "react-dom": "^19.0.0",

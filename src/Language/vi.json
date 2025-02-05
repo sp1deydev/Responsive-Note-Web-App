@@ -11,5 +11,8 @@
     "notePlaceholder": "Viết gì đó...",
     "CSVTemplate": "Mẫu CSV",
     "importCSV": "Tải lên CSV",
-    "exportCSV": "Xuất CSV"
+    "exportCSV": "Xuất CSV",
+    "exportFailMsg": "",
+    "importBlankMsg": "File tải lên trống!",
+    "importSuccessMsg": "Tải lên dữ liệu thành công!"
 }
