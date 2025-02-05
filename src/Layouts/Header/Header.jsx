@@ -115,12 +115,14 @@ export function AppHeader() {
           setType("error");
           setMessage(t('importBlankMsg'))
           setOpen(true);
+          handleClose();
           return;
         }
         dispatch(noteSlice.actions.import(results.data));
         setType("success");
         setMessage(t('importSuccessMsg'))
         setOpen(true);
+        handleClose();
       }
     });
   }

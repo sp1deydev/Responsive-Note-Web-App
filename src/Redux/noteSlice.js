@@ -64,6 +64,12 @@ export const noteSlice = createSlice({
         import: (state, action) => {
             const importData = action.payload;
             importData.forEach(note => {
+                if(note.isMarked === 'true') {
+                    note.isMarked = true;
+                }
+                else {
+                    note.isMarked = false;
+                }
                 state.allNotes.push(note);
             });
             handleLocalStorage.set('notes', state.allNotes)
